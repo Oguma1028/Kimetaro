@@ -1,19 +1,28 @@
 import { VStack, Container, Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
+import { auth } from "../../firebase";
+import onAuthStateChanged, { signInAnonymously } from "firebase/auth";
 
 export default function Home() {
+  const userAuth = auth;
+  onAuthStateChanged(userAuth, async (user) => {
+    if (!user) {
+      signInAnonymously(userAuth);
+    }
+  });
+
   return (
     <>
       <Container>
         <Box>
           <VStack spacing={4}>
-            <Link href="signin">
+            <Link href="signup">
               <Button colorScheme="red">新規登録</Button>
             </Link>
-            <Link href="signup">
+            <Link href="login">
               <Button>ログイン</Button>
             </Link>
-            <Link href="/">
+            <Link href="">
               <Button>登録せず始める</Button>
             </Link>
           </VStack>
