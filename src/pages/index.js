@@ -1,15 +1,14 @@
 import { VStack, Container, Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
 import { auth } from "../../firebase";
-import onAuthStateChanged, { signInAnonymously } from "firebase/auth";
 
 export default function Home() {
   const userAuth = auth;
-  onAuthStateChanged(userAuth, async (user) => {
-    if (!user) {
-      signInAnonymously(userAuth);
-    }
-  });
+  // onAuthStateChanged(userAuth, async (user) => {
+  //   if (!user) {
+  //     signInAnonymously(userAuth);
+  //   }
+  // });
 
   return (
     <>
